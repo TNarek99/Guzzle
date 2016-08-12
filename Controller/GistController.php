@@ -24,7 +24,7 @@ class GistController
 
         $body = $response->getBody();
 
-        $content = json_decode($body->getContents());
+        $content = json_decode($body->getContents(), true);
 
         foreach ($content as $item) {
             //the gist object
@@ -54,7 +54,7 @@ class GistController
             $gist->setFile($file);
             $gist->setUrl($url);
             $gist->setCreatedAt($dateCreated);
-            
+
             require ROOT_PATH . 'View/Gist/list.php';
         }
     }

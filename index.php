@@ -7,6 +7,7 @@ chdir(dirname(__DIR__));
 //require_once ROOT_PATH . 'vendor/autoload.php';
 
 require_once 'vendor/autoload.php';
+require_once 'Controller/GistController.php';
 
 //use GuzzleHttp\Client;
 
