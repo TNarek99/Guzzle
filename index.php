@@ -4,30 +4,26 @@ define("ROOT_PATH", '/var/www/html/DAY38/guzzle/');
 
 chdir(dirname(__DIR__));
 
-require_once ROOT_PATH . 'vendor/autoload.php';
+//require_once ROOT_PATH . 'vendor/autoload.php';
 
-use GuzzleHttp\Client;
+require_once 'vendor/autoload.php';
 
-/** @var $client Client */
-$client = new Client(["base_uri" => "https://api.github.com"]);
+//use GuzzleHttp\Client;
 
-/** @var $response \GuzzleHttp\Psr7\Response */
-$response = $client->get('/users/TNarek99/gists');
+$controller = 'gist';
+$action = 'list';
 
-$body = $response->getBody();
+if (isset($_GET['controller'])) {
+    $controller = $_GET['controller'];
+}
 
-$content = json_decode($body->getContents(), true);
+if (isset($_GET['action'])) {
+    $action = $_GET['action'];
+}
 
-/*$object = $content[0]->files;
-$name = 'third.php';*/
+$controller = ucfirst($controller);
+$controller .= "Controller";
+$action .= "Action";
 
-reset($content[0]['files']);
-$first_key = key($content[0]['files']);
-
-echo "<pre>";
-print_r($content[0]['files'][$first_key]);
-echo "</pre>";
-
-echo "<pre>";
-print_r($content[0]);
-echo "</pre>";
+$controller = new $controller();
+$controller->$action();

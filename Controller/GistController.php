@@ -54,6 +54,8 @@ class GistController
             $gist->setFile($file);
             $gist->setUrl($url);
             $gist->setCreatedAt($dateCreated);
+            
+            require ROOT_PATH . 'View/Gist/list.php';
         }
     }
 }
