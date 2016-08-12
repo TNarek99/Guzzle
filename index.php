@@ -2,6 +2,8 @@
 
 define("ROOT_PATH", '/var/www/html/DAY38/guzzle/');
 
+require 'View/Layout/header.html';
+
 chdir(dirname(__DIR__));
 
 //require_once ROOT_PATH . 'vendor/autoload.php';
@@ -28,3 +30,5 @@ $action .= "Action";
 
 $controller = new $controller();
 $controller->$action();
+
+require 'View/Layout/footer.html';

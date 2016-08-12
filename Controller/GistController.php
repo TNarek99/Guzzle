@@ -26,19 +26,27 @@ class GistController
 
         $content = json_decode($body->getContents(), true);
 
+        $gists = [];
+
+        $isFirst = true;
+
         foreach ($content as $item) {
             //the gist object
             $gist = new Gist();
 
             //url and creation date for the gist object
-            $url = $item['url'];
+            $url = $item['html_url'];
             $dateCreated = $item['created_at'];
 
-            //detailed profile object for the gist object
-            $owner = new Profile();
-            $owner->setLogin($item['owner']['login']);
-            $owner->setUrl($item['owner']['html_url']);
-            $owner->setAvatarUrl($item['owner']['avatar_url']);
+            if ($isFirst) {
+                //detailed profile object for the gist object
+                $owner = new Profile();
+                $owner->setLogin($item['owner']['login']);
+                $owner->setUrl($item['owner']['html_url']);
+                $owner->setAvatarUrl($item['owner']['avatar_url']);
+
+                $isFirst = false;
+            }
             
             //get the gist file information
             reset($item['files']);
@@ -55,7 +63,9 @@ class GistController
             $gist->setUrl($url);
             $gist->setCreatedAt($dateCreated);
 
-            require ROOT_PATH . 'View/Gist/list.php';
+            $gists[] = $gist;
         }
+
+        require ROOT_PATH . 'View/Gist/list.php';
     }
 }
