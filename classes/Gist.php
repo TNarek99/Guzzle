@@ -3,9 +3,30 @@
 class Gist
 {
     /**
+     * @var File
+     */
+    private $file;
+    
+    /**
      * @var string
      */
     private $url;
+
+    /**
+     * @return File
+     */
+    public function getFile()
+    {
+        return $this->file;
+    }
+
+    /**
+     * @param File $file
+     */
+    public function setFile($file)
+    {
+        $this->file = $file;
+    }
 
     /**
      * @var Profile
