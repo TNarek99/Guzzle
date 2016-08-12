@@ -31,19 +31,29 @@ class GistController
             $gist = new Gist();
 
             //url and creation date for the gist object
-            $url = $item->url;
-            $dateCreated = $item->created_at;
+            $url = $item['url'];
+            $dateCreated = $item['created_at'];
 
             //detailed profile object for the gist object
             $owner = new Profile();
-            $owner->setLogin($item->owner->login);
-            $owner->setUrl($item->owner->html_url);
-            $owner->setAvatarUrl($item->owner->avatar_url);
+            $owner->setLogin($item['owner']['login']);
+            $owner->setUrl($item['owner']['html_url']);
+            $owner->setAvatarUrl($item['owner']['avatar_url']);
+            
+            //get the gist file information
+            reset($item['files']);
+            $first_key = key($item['files']);
+            $fileName = $item['files'][$first_key]['filename'];
             
             //detailed file object for the gist object
             $file = new File();
-            $file->setName('default name');
-            $file->setContent('default content');
+            $file->setName($fileName);
+
+            //set gist object properties
+            $gist->setOwner($owner);
+            $gist->setFile($file);
+            $gist->setUrl($url);
+            $gist->setCreatedAt($dateCreated);
         }
     }
 }

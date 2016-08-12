@@ -16,11 +16,18 @@ $response = $client->get('/users/TNarek99/gists');
 
 $body = $response->getBody();
 
-$content = json_decode($body->getContents());
+$content = json_decode($body->getContents(), true);
 
-$object = $content[0]->files;
-$name = 'third.php';
+/*$object = $content[0]->files;
+$name = 'third.php';*/
+
+reset($content[0]['files']);
+$first_key = key($content[0]['files']);
 
 echo "<pre>";
-print_r($content[0]->files);
+print_r($content[0]['files'][$first_key]);
+echo "</pre>";
+
+echo "<pre>";
+print_r($content[0]);
 echo "</pre>";
