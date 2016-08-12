@@ -1,0 +1,4 @@
+[2016-08-10 16:08:31] logger.INFO:  - {"type":"uint8","length":7,"data":[183,218,222,52,133,23,199],"success":true}  [] []
+[2016-08-10 16:12:27] logger.INFO:  - {"type":"uint8","length":7,"data":[231,59,240,238,62,115,4],"success":true}  [] []
+[2016-08-10 16:12:33] logger.INFO:  - {"type":"uint8","length":7,"data":[79,226,12,1,231,16,121],"success":true}  [] []
+[2016-08-10 16:13:16] logger.INFO: mercury GuzzleHttp/6.2.1 curl/7.47.0 PHP/5.6.22-4+deb.sury.org~xenial+1 - [10/Aug/2016:16:13:16 +0400] "GET /API/jsonI.php?length=7&type=uint8 HTTP/1.1" 200 76 [] []
